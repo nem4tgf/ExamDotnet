@@ -1,20 +1,109 @@
 @model ComicSys.Models.ComicBook
 
-<h2>Edit Comic Book</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comic Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-<form asp-action="Edit">
-    <input type="hidden" asp-for="ComicBookID" />
-    <div>
-        <label>Title</label>
-        <input asp-for="Title" />
+        .form-container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333333;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"], input[type="number"], button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #7a9ede;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Edit Comic Book</h2>
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="ComicBookID" />
+            <div>
+                <label>Title</label>
+                <input asp-for="Title" placeholder="Enter the title" />
+            </div>
+            <div>
+                <label>Author</label>
+                <input asp-for="Author" placeholder="Enter the author's name" />
+            </div>
+            <div>
+                <label>Price Per Day</label>
+                <input asp-for="PricePerDay" placeholder="Enter price per day" type="number" step="0.01" />
+            </div>
+            <button type="submit">Save</button>
+        </form>
+        <a asp-action="Index" class="back-link">Back to List</a>
     </div>
-    <div>
-        <label>Author</label>
-        <input asp-for="Author" />
-    </div>
-    <div>
-        <label>Price Per Day</label>
-        <input asp-for="PricePerDay" />
-    </div>
-    <button type="submit">Save</button>
-</form>
+</body>
+</html>

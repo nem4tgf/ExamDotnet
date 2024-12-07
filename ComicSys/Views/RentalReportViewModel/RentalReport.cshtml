@@ -1,0 +1,54 @@
+@model IEnumerable<RentalReportViewModel>
+
+@{
+    ViewData["Title"] = "Rental Report";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Form to filter rental data by date range -->
+<form method="get" action="/Rental/RentalReport" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="startDate" class="mr-2">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" class="form-control" required />
+    </div>
+    <div class="form-group mx-3">
+        <label for="endDate" class="mr-2">End Date:</label>
+        <input type="date" id="endDate" name="endDate" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>
+
+<!-- Table displaying the rental report -->
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Book Name</th>
+                <th>Rental Date</th>
+                <th>Return Date</th>
+                <th>Customer Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Model.ToList().IndexOf(item) + 1</td>
+                    <td>@item.BookName</td>
+                    <td>@item.RentalDate.ToString("dd/MM/yyyy")</td>
+                    <td>@item.ReturnDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">No rentals found for the selected date range.</div>
+}

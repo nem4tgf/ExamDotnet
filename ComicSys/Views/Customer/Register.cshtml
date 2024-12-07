@@ -1,0 +1,8 @@
+@model Customer
+<form asp-action="Register" method="post">
+    <label>Full Name:</label>
+    <input asp-for="FullName" />
+    <label>Phone Number:</label>
+    <input asp-for="PhoneNumber" />
+    <button type="submit">Register</button>
+</form>
